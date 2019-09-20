@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
+
 import { VizorService } from '../../services/vizor/vizor.service';
 
 @Component({
@@ -8,6 +10,8 @@ import { VizorService } from '../../services/vizor/vizor.service';
   styleUrls: ['./mas-reports.component.css']
 })
 export class MasReportsComponent implements OnInit {
+  @BlockUI() blockUI: NgBlockUI;
+
   endpointData: any;
   xAuthorization: string; // APIX token
   authorization: string;  // Vizor token
@@ -16,6 +20,7 @@ export class MasReportsComponent implements OnInit {
   constructor(private vizorService: VizorService) { }
 
   ngOnInit() {
+    this.blockUI.start();
     this.vizorService.getAPIXToken().subscribe(apixData => {
       console.log(apixData);
       this.xAuthorization = 'bearer ' + apixData.access_token;
@@ -39,6 +44,7 @@ export class MasReportsComponent implements OnInit {
               = new Date(returnData.data[0].revisions[0].dueDate).toLocaleDateString();
             returnData.data[0].endDate = new Date(returnData.data[0].endDate).toLocaleDateString();
             this.endpointData = returnData.data[0];
+            this.blockUI.stop();
           } else {
             const lastRevisionId = sessionStorage.getItem('lastSavedRevisionId');
 
@@ -48,6 +54,7 @@ export class MasReportsComponent implements OnInit {
                   = new Date(lastReturnData.data.revisions[0].dueDate).toLocaleDateString();
                 lastReturnData.data.endDate = new Date(lastReturnData.data.endDate).toLocaleDateString();
                 this.endpointData = lastReturnData.data;
+                this.blockUI.stop();
               });
             }
           }
@@ -59,10 +66,12 @@ export class MasReportsComponent implements OnInit {
 
   /** Send a request to the vizorService's getValidation endpoint. */
   getValidation(revisionId: string): void {
+    this.blockUI.start();
     this.vizorService.getValidation(this.authorization, this.xAuthorization, revisionId).subscribe(validationData => {
       console.log(validationData);
 
       this.failedRules = validationData.data.failedRules;
+      this.blockUI.stop();
     });
   }
 

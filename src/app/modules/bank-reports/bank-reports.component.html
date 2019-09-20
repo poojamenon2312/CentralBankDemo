@@ -18,14 +18,14 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <th scope="row">{{ return?.name ? return.name : 'Q1 - 2019' }}</th>
-                        <td>{{ return?.revisions[0].dueDate ? return.revisions[0].dueDate : '31/01/2019' }}
+                        <th scope="row">{{ return?.name }}</th>
+                        <td>{{ return?.revisions[0].dueDate }}
                         </td>
-                        <td>{{ return?.endDate ? return.endDate : '28/02/2019' }}</td>
+                        <td>{{ return?.endDate }}</td>
                         <td>
                             {{ return?.status.name }}
                             <input *ngIf="(return?.status?.name === 'No Data') && !files[0]" type="file"
-                                (change)="onFileChange($event, 0)" class="form-control-file pull-up"
+                                (change)="onFileChange($event, 0)" class="form-control-file"
                                 id="exampleFormControlFile1">
                         </td>
                         <td>{{ return?.status.name !== 'No Data' 
@@ -35,7 +35,7 @@
                                 : '' }}
                             <button *ngIf="(return?.status.name !== 'No Data') && (return?.revisions[0]?.hasErrors)"
                                 (click)="getValidation(return?.revisions[0]?.id)" type="button"
-                                class="btn btn-sm btn-link p-0" data-toggle="modal"
+                                class="btn btn-sm btn-link p-0 pull-up" data-toggle="modal"
                                 data-target="#exampleModal">View</button>
                         </td>
                     </tr>
