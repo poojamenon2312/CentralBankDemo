@@ -25,7 +25,7 @@
                         <td>
                             {{ return?.status.name }}
                             <input *ngIf="(return?.status?.name === 'No Data') && !files[0]" type="file"
-                                (change)="onFileChange($event, 0)" class="form-control-file"
+                                (change)="onFileChange($event, 0)" class="form-control-file pull-up"
                                 id="exampleFormControlFile1">
                         </td>
                         <td>{{ return?.status.name !== 'No Data' 

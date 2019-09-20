@@ -30,7 +30,7 @@
                             <button
                                 *ngIf="(endpointData?.status.name !== 'No Data') && (endpointData?.revisions[0]?.hasErrors)"
                                 (click)="getValidation(endpointData?.revisions[0]?.id)" type="button"
-                                class="btn btn-sm btn-link p-0" data-toggle="modal"
+                                class="btn btn-sm btn-link p-0 pull-up" data-toggle="modal"
                                 data-target="#errorsModal">View Errors</button>
                         </td>
                     </tr>
