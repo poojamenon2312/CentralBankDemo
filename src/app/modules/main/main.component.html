@@ -1,4 +1,4 @@
-<div class="container vh-fill">
+<!-- <div class="container vh-fill">
     <div class="row h-50 pt-extra">
         <div class="col-sm my-auto text-center card p-2 mr-1">
             <button type="button" class="btn btn-primary" (click)="showLogin('bank')">Bank Login</button>
@@ -35,4 +35,60 @@
             </form>
         </div>
     </div>
-</div>
+</div> -->
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<div class="container vh-fill">
+<div class="sidenav">
+         <div class="login-main-text">
+                <img class="img-logo" src="assets/images/apix.png">
+            <h2>Demo Central Bank<br> Reporting Portal</h2>
+            <p>Login from here to submit your reports or access the Reporting Dashboard.</p>
+         </div>
+      </div>
+      <div class="main">
+         <div class="col-md-6 col-sm-12">
+            <div class="login-form">
+               <form>
+                    <div class="form-group">
+                            <label>User Name</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                                placeholder="Email Address" required>
+                        </div>
+                        <div class="form-group">
+                                <label>Password</label>
+                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"
+                                    required>
+                        </div>
+                        <div class="form-group">
+
+                        </div>
+                        <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  Dropdown button
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                  <a class="dropdown-item" href="#">Bank</a>
+                                  <a class="dropdown-item" href="#">Central Bank </a>
+                                </div>
+                              </div>
+                  <!-- <div class="form-group">
+                     <label>User Name</label>
+                     <input type="text" class="form-control" placeholder="User Name">
+                  </div> -->
+                  <!-- <div class="form-group">
+                     <label>Password</label>
+                     <input type="password" class="form-control" placeholder="Password">
+                  </div> -->
+                  <button type="submit" class="btn btn-primary" [routerLink]="['/mas-reports']">Submit</button>
+
+                  <!-- <button type="submit" class="btn btn-black">Login</button> -->
+                  <!-- <button type="submit" class="btn btn-secondary">Register</button> -->
+               </form>
+            </div>
+         </div>
+      </div>
+    </div>
