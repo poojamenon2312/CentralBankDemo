@@ -21,13 +21,33 @@ export class MasReportsComponent implements OnInit {
         const authorization = 'Bearer ' + vizorData.access_token;
         console.log(vizorData);
 
-        this.vizorService.retrieveReturn(authorization, xAuthorization).subscribe(returnData => {
+        this.vizorService.retrieveAllReturns(authorization, xAuthorization).subscribe(returnData => {
           console.log('returnData', returnData);
 
-          returnData.data.revisions[0].dueDate
-            = new Date(returnData.data.revisions[0].dueDate).toLocaleDateString();
-          returnData.data.endDate = new Date(returnData.data.endDate).toLocaleDateString();
-          this.endpointData = returnData.data;
+          if (returnData) {
+            const lastRevisionId = sessionStorage.getItem('lastSavedRevisionId');
+
+            if (lastRevisionId) {
+              sessionStorage.setItem('lastSavedRevisionId', undefined);
+              sessionStorage.removeItem('lastSavedRevisionId');
+            }
+
+            returnData.data[0].revisions[0].dueDate
+              = new Date(returnData.data[0].revisions[0].dueDate).toLocaleDateString();
+            returnData.data[0].endDate = new Date(returnData.data[0].endDate).toLocaleDateString();
+            this.endpointData = returnData.data[0];
+          } else {
+            const lastRevisionId = sessionStorage.getItem('lastSavedRevisionId');
+
+            if (lastRevisionId) {
+              this.vizorService.retrieveReturn(authorization, xAuthorization, lastRevisionId).subscribe(lastReturnData => {
+                lastReturnData.data.revisions[0].dueDate
+                  = new Date(lastReturnData.data.revisions[0].dueDate).toLocaleDateString();
+                lastReturnData.data.endDate = new Date(lastReturnData.data.endDate).toLocaleDateString();
+                this.endpointData = lastReturnData.data;
+              });
+            }
+          }
         });
 
       });

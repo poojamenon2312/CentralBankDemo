@@ -24,13 +24,33 @@ export class BankReportsComponent implements OnInit {
         console.log(vizorData);
         this.authorization = 'Bearer ' + vizorData.access_token;
 
-        this.vizorService.retrieveReturn(this.authorization, this.xAuthorization).subscribe(returnData => {
+        this.vizorService.retrieveAllReturns(this.authorization, this.xAuthorization).subscribe(returnData => {
           console.log('returnData', returnData);
 
-          returnData.data.revisions[0].dueDate
-            = new Date(returnData.data.revisions[0].dueDate).toLocaleDateString();
-          returnData.data.endDate = new Date(returnData.data.endDate).toLocaleDateString();
-          this.return = returnData.data;
+          if (returnData) {
+            const lastRevisionId = sessionStorage.getItem('lastSavedRevisionId');
+
+            if (lastRevisionId) {
+              sessionStorage.setItem('lastSavedRevisionId', undefined);
+              sessionStorage.removeItem('lastSavedRevisionId');
+            }
+
+            returnData.data[0].revisions[0].dueDate
+              = new Date(returnData.data[0].revisions[0].dueDate).toLocaleDateString();
+            returnData.data[0].endDate = new Date(returnData.data[0].endDate).toLocaleDateString();
+            this.return = returnData.data[0];
+          } else {
+            const lastRevisionId = sessionStorage.getItem('lastSavedRevisionId');
+
+            if (lastRevisionId) {
+              this.vizorService.retrieveReturn(this.authorization, this.xAuthorization, lastRevisionId).subscribe(lastReturnData => {
+                lastReturnData.data.revisions[0].dueDate
+                  = new Date(lastReturnData.data.revisions[0].dueDate).toLocaleDateString();
+                lastReturnData.data.endDate = new Date(lastReturnData.data.endDate).toLocaleDateString();
+                this.return = lastReturnData.data;
+              });
+            }
+          }
         });
 
       });
@@ -49,10 +69,12 @@ export class BankReportsComponent implements OnInit {
     }
     console.log(event);
 
-    if (index === 0) {
+    if (index === 0 && this.return) {
       this.vizorService.postData(this.authorization,
-        this.xAuthorization, this.files[index][0] as File).subscribe(data =>
-          console.log(data));
+        this.xAuthorization, this.files[index][0] as File, this.return.revisions[0].id).subscribe(data => {
+          console.log(data);
+          setTimeout(() => { window.location.reload(); }, 3000);
+        });
     }
   }
 

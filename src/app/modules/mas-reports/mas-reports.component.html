@@ -24,23 +24,11 @@
                         <td>{{ endpointData?.endDate }}</td>
                         <td>Yes</td>
                         <td>{{ endpointData?.status.name }}
-                            [{{ endpointData?.revisions[0]?.hasErrors ? 'Errors Present' : 'No Errors' }}]</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Bank Two</th>
-                        <td>Q1 - 2019</td>
-                        <td>31/01/2019</td>
-                        <td>28/02/2019</td>
-                        <td>Yes</td>
-                        <td>Completed [No Errors]</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Bank One</th>
-                        <td>Q2 - 2019</td>
-                        <td>28/02/2019</td>
-                        <td>28/02/2019</td>
-                        <td>Yes</td>
-                        <td>Completed [Errors Present]</td>
+                            {{ endpointData?.status.name !== 'No Data' 
+                                ? endpointData?.revisions[0]?.hasErrors
+                                    ? '[Errors Present]'
+                                    : '[No Errors]'
+                                : '' }}</td>
                     </tr>
                 </tbody>
             </table>
