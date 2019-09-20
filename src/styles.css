@@ -10,8 +10,8 @@ body {
     background-blend-mode: saturation;
 }
 .btn-primary {
-    background-color: #8d7249 !important;
-    border-color: #8d7249 !important;
+    background-color: #327083 !important;
+    border-color: #327083 !important;
 }
 .vh-fill {
     height: 87vh;
@@ -20,5 +20,5 @@ body {
     padding-top: 7em;
 }
 .thead-dark th {
-    background-color: #020e50 !important;
+    background-color: #122b50 !important;
 }
