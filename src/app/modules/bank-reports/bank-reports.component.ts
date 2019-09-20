@@ -11,7 +11,7 @@ export class BankReportsComponent implements OnInit {
   files: any[] = [];
   authorization: string;
   xAuthorization: string;
-  return: any
+  return: any;
 
   constructor(private vizorService: VizorService) { }
 
