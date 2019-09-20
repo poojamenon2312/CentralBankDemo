@@ -1,0 +1,63 @@
+<div class="container vh-fill">
+    <div class="row pt-5">
+        <div class="col">
+            <table class="table table-bordered table-light">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Report Period</th>
+                        <th scope="col">Due Date</th>
+                        <th scope="col">End Date</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Comments</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">{{ return?.name ? return.name : 'Q1 - 2019' }}</th>
+                        <td>{{ return?.revisions[0].dueDate ? return.revisions[0].dueDate : '31/01/2019' }}
+                        </td>
+                        <td>{{ return?.endDate ? return.endDate : '28/02/2019' }}</td>
+                        <td *ngIf="!return?.status?.name">
+                            {{files[0] ? 'Submitted for Approval' : 'Not Submitted'}} <input *ngIf="!files[0]"
+                                type="file" (change)="onFileChange($event, 0)" class="form-control-file"
+                                id="exampleFormControlFile1">
+                        </td>
+                        <td *ngIf="return?.status?.name">
+                            {{ return.status.name }}
+                        </td>
+                        <td>{{ return?.revisions[0].hasErrors ? 'Has Errors' : '' }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Q2 - 2019</th>
+                        <td>31/01/2019</td>
+                        <td>28/02/2019</td>
+                        <td>{{files[1] ? 'Submitted for Approval' : 'Not Submitted'}} <input *ngIf="!files[1]"
+                                type="file" (change)="onFileChange($event, 1)" class="form-control-file"
+                                id="exampleFormControlFile2">
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Q3 - 2019</th>
+                        <td>31/01/2019</td>
+                        <td>28/02/2019</td>
+                        <td>{{files[2] ? 'Submitted for Approval' : 'Not Submitted'}} <input *ngIf="!files[2]"
+                                type="file" (change)="onFileChange($event, 2)" class="form-control-file"
+                                id="exampleFormControlFile3">
+                        </td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row mt-2 card p-2">
+        Quisque facilisis tortor urna, in dictum justo egestas eget. Duis nec tempor magna. Aenean nec odio ex. Class
+        aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nulla tristique mollis
+        orci vel eleifend. Mauris at eleifend leo. Aenean in tincidunt leo. Donec quis magna sit amet lorem luctus
+        sagittis at id quam. Donec pharetra dictum urna eu sollicitudin. Aenean sagittis sapien purus, quis commodo arcu
+        dictum in. Duis non mollis massa. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sagittis, nibh
+        ac lacinia aliquet, odio diam aliquam lorem, nec malesuada libero mi et dolor. Nulla molestie quis neque quis
+        consectetur. Pellentesque viverra et quam at auctor. Cras sed vehicula lectus.
+    </div>
+</div>

@@ -1,0 +1,38 @@
+<div class="container vh-fill">
+    <div class="row h-50 pt-extra">
+        <div class="col-sm my-auto text-center card p-2 mr-1">
+            <button type="button" class="btn btn-primary" (click)="showLogin('bank')">Bank Login</button>
+            <p class="mt-2">Nam sollicitudin dapibus luctus. Aliquam urna ante, ornare vitae hendrerit id, dapibus nec
+                quam.</p>
+            <form class="mt-2" *ngIf="toggle==='bank'" [@fadeInOut]>
+                <div class="form-group">
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        placeholder="Email Address" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"
+                        required>
+                </div>
+                <button type="submit" class="btn btn-primary" [routerLink]="['/bank-reports']">Submit</button>
+            </form>
+        </div>
+        <div class="col-sm my-auto text-center card p-2 ml-1">
+            <button type="button" class="btn btn-primary" (click)="showLogin('mas')">MAS Login</button>
+            <p class="mt-2">Ut hendrerit semper nunc, non sollicitudin mi consectetur vel. Aliquam elementum purus vitae
+                massa
+                euismod
+                pretium.</p>
+            <form class="mt-2" *ngIf="toggle==='mas'" [@fadeInOut]>
+                <div class="form-group">
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        placeholder="Email Address" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"
+                        required>
+                </div>
+                <button type="submit" class="btn btn-primary" [routerLink]="['/mas-reports']">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>

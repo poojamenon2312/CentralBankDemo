@@ -1,0 +1,45 @@
+<div class="container vh-fill">
+    <div class="row pt-extra">
+        <div class="col">
+            <table class="table table-bordered table-light">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Banks</th>
+                        <th scope="col">Report Period</th>
+                        <th scope="col">Due Date</th>
+                        <th scope="col">End Date</th>
+                        <th scope="col">Report Submitted</th>
+                        <th scope="col">Report Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">{{ endpointData?.entity.name }}</th>
+                        <td>{{ endpointData?.name }}</td>
+                        <td>{{ endpointData?.revisions[0]?.dueDate }}</td>
+                        <td>{{ endpointData?.endDate }}</td>
+                        <td>Yes</td>
+                        <td>{{ endpointData?.status.name }}
+                            [{{ endpointData?.revisions[0]?.hasErrors ? 'Errors Present' : 'No Errors' }}]</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Bank Two</th>
+                        <td>Q1 - 2019</td>
+                        <td>31/01/2019</td>
+                        <td>28/02/2019</td>
+                        <td>Yes</td>
+                        <td>Completed [No Errors]</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Bank One</th>
+                        <td>Q2 - 2019</td>
+                        <td>28/02/2019</td>
+                        <td>28/02/2019</td>
+                        <td>Yes</td>
+                        <td>Completed [Errors Present]</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

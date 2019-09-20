@@ -1,0 +1,19 @@
+{
+    "return": {
+        "returnTypeId": "8d3a972f-ba45-455c-a83c-fa0314904647",
+        "revisionId": 73
+    },
+    "APIXCredentials": {
+        "username": "mnifras@virtusa.com",
+        "password": "1qaz2wsx@"
+    },
+    "VizorCredentials": {
+        "username": "John.Smith@demobank.com",
+        "password": "TestPassword1!"
+    },
+    "routes": {
+        "APIXAuthUrl": "https://services.dev.fintechmart.online/api-sandbox/application/token",
+        "VizorAuthUrl": "https://apis.vizorsoftware.com/VAS/oauth2/token",
+        "VizorAPIBaseUrl": "https://api.dev.fintechmart.online/vizor/2.0/VAS/v1/returns/"
+    }
+}
