@@ -13,7 +13,11 @@ const routes: Routes = [
   },
   { path: 'login', component: MainComponent },
   { path: 'bank-reports', component: BankReportsComponent },
-  { path: 'mas-reports', component: MasReportsComponent }
+  { path: 'mas-reports', component: MasReportsComponent },
+  {
+    path: '**',
+    redirectTo: '/login',
+  }
 ];
 
 @NgModule({
