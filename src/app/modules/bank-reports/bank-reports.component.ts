@@ -12,6 +12,7 @@ export class BankReportsComponent implements OnInit {
   authorization: string;
   xAuthorization: string;
   return: any;
+  failedRules: any;
 
   constructor(private vizorService: VizorService) { }
 
@@ -58,10 +59,7 @@ export class BankReportsComponent implements OnInit {
     });
   }
 
-  /** Handle changes in file inputs.
-   * On the template side, this is hardcoded for now,
-   *  but this can be changed once an API is integrated.
-   */
+  /** Handle changes in file inputs. */
   onFileChange(event, index) {
     this.files[index] = event.target.files;
     if (event.target.files.length === 0) {
@@ -76,6 +74,15 @@ export class BankReportsComponent implements OnInit {
           setTimeout(() => { window.location.reload(); }, 3000);
         });
     }
+  }
+
+  /** Send a request to the vizorService's getValidation endpoint. */
+  getValidation(revisionId: string): void {
+    this.vizorService.getValidation(this.authorization, this.xAuthorization, revisionId).subscribe(validationData => {
+      console.log(validationData);
+
+      this.failedRules = validationData.data.failedRules;
+    });
   }
 
 }

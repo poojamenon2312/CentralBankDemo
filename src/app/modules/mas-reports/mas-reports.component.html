@@ -12,7 +12,6 @@
                         <th scope="col">Report Period</th>
                         <th scope="col">Due Date</th>
                         <th scope="col">End Date</th>
-                        <th scope="col">Report Submitted</th>
                         <th scope="col">Report Status</th>
                     </tr>
                 </thead>
@@ -22,17 +21,55 @@
                         <td>{{ endpointData?.name }}</td>
                         <td>{{ endpointData?.revisions[0]?.dueDate }}</td>
                         <td>{{ endpointData?.endDate }}</td>
-                        <td>Yes</td>
                         <td>{{ endpointData?.status.name }}
                             {{ endpointData?.status.name !== 'No Data' 
                                 ? endpointData?.revisions[0]?.hasErrors
-                                    ? '[Errors Present]'
-                                    : '[No Errors]'
-                                : '' }}</td>
+                                    ? '[Errors Present].'
+                                    : '[No Errors].'
+                                : '' }}
+                            <button
+                                *ngIf="(endpointData?.status.name !== 'No Data') && (endpointData?.revisions[0]?.hasErrors)"
+                                (click)="getValidation(endpointData?.revisions[0]?.id)" type="button"
+                                class="btn btn-sm btn-link p-0" data-toggle="modal"
+                                data-target="#errorsModal">View Errors</button>
+                        </td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
 
+</div>
+<div class="modal fade" id="errorsModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Errors</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-bordered">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Rule Name</th>
+                            <th scope="col">Violation Type</th>
+                            <th scope="col">Validation Message</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let failedRule of failedRules">
+                            <td>{{ failedRule.ruleName }}</td>
+                            <td>{{ failedRule.type }}</td>
+                            <td>{{ failedRule.validationMessage }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
 </div>

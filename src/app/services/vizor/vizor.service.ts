@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import * as hardcoded from 'src/assets/hardcoded.json';
+import * as hardcoded from 'src/assets/hardcoded-prod.json';
 
 @Injectable({
   providedIn: 'root'
@@ -53,6 +53,18 @@ export class VizorService {
 
     // GET one return with revisionId from Vizor endpoint using the headers object as request headers
     return this.http.get(hardcoded.routes.VizorAPIBaseUrl + '/' + revisionId, params);
+  }
+
+  /** Get a list of errors and validation data for a specific revision ID */
+  getValidation(authorization, xAuthorization, revisionId): Observable<any> {
+    // Create a headers object and append auth keys
+    let postHeaders: HttpHeaders = new HttpHeaders();
+    postHeaders = postHeaders.append('authorization', authorization);     // Vizor Auth key
+    postHeaders = postHeaders.append('X-Authorization', xAuthorization);  // APIX Auth key
+    const params = { headers: postHeaders };
+
+    // GET validation data from Vizor endpoint for specific revisionId
+    return this.http.get(hardcoded.routes.VizorAPIBaseUrl + '/' + revisionId + '/getValidation', params);
   }
 
   /** Post a return to Vizor */

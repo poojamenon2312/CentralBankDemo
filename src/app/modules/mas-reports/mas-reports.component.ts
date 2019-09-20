@@ -9,19 +9,22 @@ import { VizorService } from '../../services/vizor/vizor.service';
 })
 export class MasReportsComponent implements OnInit {
   endpointData: any;
+  xAuthorization: string; // APIX token
+  authorization: string;  // Vizor token
+  failedRules: any;
 
   constructor(private vizorService: VizorService) { }
 
   ngOnInit() {
     this.vizorService.getAPIXToken().subscribe(apixData => {
       console.log(apixData);
-      const xAuthorization = 'bearer ' + apixData.access_token;
+      this.xAuthorization = 'bearer ' + apixData.access_token;
 
       this.vizorService.getVizorToken().subscribe(vizorData => {
-        const authorization = 'Bearer ' + vizorData.access_token;
+        this.authorization = 'Bearer ' + vizorData.access_token;
         console.log(vizorData);
 
-        this.vizorService.retrieveAllReturns(authorization, xAuthorization).subscribe(returnData => {
+        this.vizorService.retrieveAllReturns(this.authorization, this.xAuthorization).subscribe(returnData => {
           console.log('returnData', returnData);
 
           if (returnData) {
@@ -40,7 +43,7 @@ export class MasReportsComponent implements OnInit {
             const lastRevisionId = sessionStorage.getItem('lastSavedRevisionId');
 
             if (lastRevisionId) {
-              this.vizorService.retrieveReturn(authorization, xAuthorization, lastRevisionId).subscribe(lastReturnData => {
+              this.vizorService.retrieveReturn(this.authorization, this.xAuthorization, lastRevisionId).subscribe(lastReturnData => {
                 lastReturnData.data.revisions[0].dueDate
                   = new Date(lastReturnData.data.revisions[0].dueDate).toLocaleDateString();
                 lastReturnData.data.endDate = new Date(lastReturnData.data.endDate).toLocaleDateString();
@@ -51,6 +54,15 @@ export class MasReportsComponent implements OnInit {
         });
 
       });
+    });
+  }
+
+  /** Send a request to the vizorService's getValidation endpoint. */
+  getValidation(revisionId: string): void {
+    this.vizorService.getValidation(this.authorization, this.xAuthorization, revisionId).subscribe(validationData => {
+      console.log(validationData);
+
+      this.failedRules = validationData.data.failedRules;
     });
   }
 
