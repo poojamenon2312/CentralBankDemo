@@ -5,12 +5,12 @@
         "clearData": "true"
     },
     "APIXCredentials": {
-        "username": "mnifras@virtusa.com",
-        "password": "1qaz2wsx@"
+        "username": "Replace APIX Username",
+        "password": "Replace APIX Password"
     },
     "VizorCredentials": {
-        "username": "John.Smith@demobank.com",
-        "password": "TestPassword1!"
+        "username": "Repalce Vizor Username here",
+        "password": "Repalce Vizor Password here"
     },
     "routes": {
         "APIXAuthUrl": "https://services.dev.fintechmart.online/api-sandbox/application/token",

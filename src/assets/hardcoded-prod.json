@@ -9,8 +9,8 @@
         "password": "Replace APIX Password"
     },
     "VizorCredentials": {
-        "username": "John.Smith@demobank.com",
-        "password": "Repalce password here"
+        "username": "Repalce Vizor Username here",
+        "password": "Repalce Vizor Password here"
     },
     "routes": {
         "APIXAuthUrl": "https://services.apixplatform.com/api-sandbox/application/token",
