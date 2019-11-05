@@ -17,7 +17,11 @@ export class MasReportsComponent implements OnInit {
   authorization: string;  // Vizor token
   failedRules: any;
 
-  constructor(private vizorService: VizorService) { }
+  constructor(private vizorService: VizorService) { 
+    let body = document.getElementsByTagName('body')[0];
+    body.classList.remove("body2");   //remove the class
+    body.classList.add("body2");   //add the class
+  }
 
   ngOnInit() {
     this.blockUI.start();

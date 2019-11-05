@@ -13,6 +13,7 @@ import { MainComponent } from './modules/main/main.component';
 import { BankReportsComponent } from './modules/bank-reports/bank-reports.component';
 import { MasReportsComponent } from './modules/mas-reports/mas-reports.component';
 import { HeaderComponent } from './components/header/header.component';
+import { Header2Component } from './components/header2/header.component';
 
 // External
 import { BlockUIModule } from 'ng-block-ui';
@@ -23,7 +24,8 @@ import { BlockUIModule } from 'ng-block-ui';
     MainComponent,
     BankReportsComponent,
     MasReportsComponent,
-    HeaderComponent
+    HeaderComponent,
+    Header2Component
   ],
   imports: [
     BrowserModule,

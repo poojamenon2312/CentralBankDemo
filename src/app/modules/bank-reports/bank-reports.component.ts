@@ -18,7 +18,13 @@ export class BankReportsComponent implements OnInit {
   return: any;
   failedRules: any;
 
-  constructor(private vizorService: VizorService) { }
+  constructor(private vizorService: VizorService) 
+  {
+    let body = document.getElementsByTagName('body')[0];
+    body.classList.remove("body1");   //remove the class
+    body.classList.add("body1");   //add the class
+  
+  }
 
   ngOnInit() {
     this.blockUI.start();

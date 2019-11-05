@@ -5,12 +5,12 @@
         "clearData": "true"
     },
     "APIXCredentials": {
-        "username": "Replace APIX Username",
-        "password": "Replace APIX Password"
+        "username": "admin@demoregulator01.com",
+        "password": "1Qaz2wsx$$"
     },
     "VizorCredentials": {
-        "username": "Repalce Vizor Username here",
-        "password": "Repalce Vizor Password here"
+        "username": "John.Smith@demobank.com",
+        "password": "APIXPassword1!"
     },
     "routes": {
         "APIXAuthUrl": "https://services.apixplatform.com/api-sandbox/application/token",
