@@ -2,3 +2,14 @@
     margin-top: -0.25em;
 }
 
+tbody tr{
+  background-color: white !important;
+}
+
+.table-light tbody+tbody, .table-light td, .table-light th {
+    border:0.5px solid #e1e1e1;
+}
+
+.table .thead-dark th{
+     border:0.25px solid #454d55;
+}

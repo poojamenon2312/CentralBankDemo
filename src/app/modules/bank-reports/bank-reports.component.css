@@ -4,4 +4,14 @@
 
 .thead-dark2 {
     background-color: #7C868D !important;
+    color:white;
+}
+
+tbody tr{
+  background-color: white !important;
+}
+
+
+.table-light tbody+tbody, .table-light td, .table-light th, .table-light thead th{
+  border:1px solid #e1e1e1 !important;
 }
